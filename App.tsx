@@ -1,124 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import * as React from 'react';
+import { Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScene from './src/pages/main/HomeScene'
+import SettingsScene from './src/pages/setting/SettingsScene'
+import ChooseScreenLockScene from './src/pages/screenlock/ChooseScreenLockScene'
+import SecureStartUpScene from './src/pages/screenlock/SecureStartUpScene'
+import ChoosePINScene from './src/pages/screenlock/ChoosePINScene'
+import NotificationsScene from './src/pages/notification/NotificationsScene'
+import AuthenticateScene from './src/pages/authenticate/AuthenticateScene'
+import TodoListScene from './src/pages/todo/TodoListScene'
 
-import React, { type PropsWithChildren } from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  Button,
-  useColorScheme,
-  View,
-  Alert,
-} from 'react-native';
+const Stack = createNativeStackNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark';
+export default function App() {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScene} />
+        <Stack.Screen name="Settings" component={SettingsScene} />
+        <Stack.Screen name="ChooseScreenLock" component={ChooseScreenLockScene} />
+        <Stack.Screen name="SecureStartUp" component={SecureStartUpScene} />
+        <Stack.Screen name="ChoosePIN" component={ChoosePINScene} />
+        <Stack.Screen name="Notifications" component={NotificationsScene} />
+        <Stack.Screen name="Authenticate" component={AuthenticateScene} />
+        <Stack.Screen name="TodoList" component={TodoListScene} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  const onPressLearnMore = () => {
-    // alert('学习Button')
-    Alert.alert('Simple Button pressed test3')
-  }
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Text
-            style={[
-              styles.sectionDescription,
-              {
-                color: isDarkMode ? Colors.light : Colors.dark,
-              },
-            ]}>
-            Set Authentication to Proceed
-          </Text>
-          <Button
-            onPress={onPressLearnMore}
-            title="Go to Settings"
-            color="#841584"
-            accessibilityLabel="Go to Settings"
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+}
